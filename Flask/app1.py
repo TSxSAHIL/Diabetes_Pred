@@ -12,19 +12,18 @@ run_with_ngrok(app)
 @app.route('/mrs' , methods=['POST'])
 def diabetes_prediction():
     # Get the input data from the request
-    input_data = request.get_json()
     # Extract the input values from the data
-    pregnancies = int(input_data['pregnancies'])
-    glucose = int(input_data['glucose'])
-    blood_pressure = int(input_data['blood_pressure'])
-    skin_thickness = int(input_data['skin_thickness'])
-    insulin = int(input_data['insulin'])
-    bmi = float(input_data['bmi'])
-    diabetes_pedigree_function = float(input_data['diabetes_pedigree_function'])
-    age = int(input_data['age'])
+    pregnancies = int(request.args.get('pregnancies'))
+    glucose = int(request.args.get['glucose'])
+    blood_pressure = int(request.args.get['blood_pressure'])
+    skin_thickness = int(request.args.get['skin_thickness'])
+    insulin = int(request.args.get['insulin'])
+    bmi = float(request.args.get['bmi'])
+    diabetes_pedigree_function = float(request.args.get['diabetes_pedigree_function'])
+    age = int(request.args.get['age'])
 
     # Create a numpy array with the input values
-    input_data = np.array([[pregnancies, glucose, blood_pressure, skin_thickness, insulin, bmi, diabetes_pedigree_function, age]])
+    input_data = np.array([[pregnancies,glucose,blood_pressure,skin_thickness,insulin,bmi,diabetes_pedigree_function,age]])
 
     # Reshape the input data to match the expected shape of the model
     input_data_reshaped = input_data.reshape(1,-1)
@@ -33,12 +32,10 @@ def diabetes_prediction():
     prediction = diabetes.predict(input_data_reshaped)
 
     # Return the predicted outcome as a JSON response
-    if (prediction[0] == 0):
-        return jsonify({'prediction': 'Diabetes Negative'})
-    else:
-        return jsonify({'prediction': 'Diabetes Positive'})
+    return jsonify(prediction)
     
 if __name__ == '__main__':
     app.run()
+
 
     
