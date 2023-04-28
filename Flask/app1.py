@@ -27,7 +27,6 @@ def diabetes_prediction():
 
     # Reshape the input data to match the expected shape of the model
     input_data_reshaped = input_data.reshape(1,-1)
-
     # Make the prediction using the loaded model
     prediction = diabetes.predict(input_data_reshaped)
 
