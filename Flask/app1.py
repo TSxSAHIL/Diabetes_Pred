@@ -32,6 +32,5 @@ def diabetes_prediction():
 
     # Return the predicted outcome as a JSON response
     return jsonify(prediction)
-    
 if __name__ == '__main__':
     app.run()
