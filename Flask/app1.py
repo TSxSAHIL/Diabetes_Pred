@@ -7,7 +7,6 @@ import pandas as pd
 diabetes = pickle.load(open("Flask\diabetes_model.pkl",'rb'))
 app = Flask(__name__)
 run_with_ngrok(app)
-
 @app.route('/mrs' , methods=['POST'])
 def diabetes_prediction():
     # Get the input data from the request
