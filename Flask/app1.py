@@ -12,7 +12,6 @@ run_with_ngrok(app)
 @app.route('/mrs' , methods=['POST'])
 def diabetes_prediction():
     # Get the input data from the request
-    
     input_data = request.get_json()
     # Extract the input values from the data
     pregnancies = int(input_data['pregnancies'])
